@@ -9,7 +9,7 @@ enum ground {
 };
 
 int main() {
-  float x = 10.0f, y = 10.0f, speed = 200.0f, normSpeed = 200.0f, sprintSpeed = 300.0f, ADMIN_TOTAL_SPEED_RAHHHHHHHH = 2000.0f;
+  float x = 10.0f, y = 10.0f, speed = 200.0f, normSpeed = 200.0f, sprintSpeed = 300.0f, ADMIN_TOTAL_SPEED_RAHHHHHHHH = 20000.0f;
   bool left = false;
   sf::RenderWindow window(sf::VideoMode({800, 600}), "SFML window");
   const sf::Texture texture("./assets/character.png"), grassTexture("./assets/grass.png"), pathTexture("./assets/path.png");
