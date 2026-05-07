@@ -19,7 +19,7 @@ clang++ -o main main.cpp $(pkg-config --cflags --libs sfml-all) -Iinclude
 
 
 ## Current features:  
-Tilemap with a combination of 32x32 tiles, some for grass and some for path blocks  
+Tilemap with a combination of 121x127 tiles that are 32x32 pixels, some for grass and some for path blocks  
 Player movement with WASD/Arrow keys, sprint increases speed  
 Bounds player to window  
   
