@@ -15,7 +15,7 @@ enum class EntityType {
 };
 
 struct Entity {
-  AI ai;
+  std::optional<AI> ai;
   Movement movement;
   Health health;
   Animation animation;
