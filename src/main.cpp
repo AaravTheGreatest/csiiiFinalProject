@@ -37,6 +37,7 @@ int main() {
     }
   }
   sf::View game({0.f, 0.f}, {800.f, 600.f});
+  initEntities();
   while (window.isOpen()) {
     game.setCenter({x, y});
     window.setView(game);
