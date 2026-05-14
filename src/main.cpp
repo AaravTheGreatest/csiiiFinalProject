@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <helpers.hpp>
+#include <enemy.hpp>
 
 enum ground {
   GRASS, PATH, ROCK
