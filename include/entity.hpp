@@ -9,7 +9,7 @@
 #include "animation.hpp"
 
 enum class EntityType {
-  MONSTER,
+  ENEMY,
   PLAYER,
   PASSIVE
 };
@@ -26,3 +26,4 @@ struct Entity {
 };
 
 void initEntities();
+extern std::vector<Entity> entities;

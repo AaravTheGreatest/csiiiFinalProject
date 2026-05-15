@@ -39,30 +39,11 @@ int main() {
     sf::Vector2f dir(0.0f, 0.0f);
     handleEvents(win.win, win.windowX, win.windowY);
     float dt = clock.restart().asSeconds(); // all of physics relies on this
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) speed = sprintSpeed;
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift)) speed = ADMIN_TOTAL_SPEED_RAHHHHHHHH;
-    else speed = normSpeed;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) ||
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) dir.y -= 1;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) ||
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) dir.y += 1;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) ||
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) { dir.x += 1; left = false; }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || 
-        sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) { dir.x -= 1; left = true; }
-    if (left) { playerSprite.setScale(sf::Vector2f(-5.0f, 5.0f)); playerSprite.setOrigin(sf::Vector2f(32.0f, 0.0f)); }
-    else { playerSprite.setScale(sf::Vector2f(5.0f, 5.0f)); playerSprite.setOrigin(sf::Vector2f(0.0f, 0.0f)); }
-    float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
-    if (len > 0) dir /= len;
-    x += dir.x * speed * dt; y += dir.y * speed * dt;
-    if (x <= 0) x = 0.0f;
-    if (y <= 0) y = 0.0f;
     HUDText.setString("x: " + std::to_string(x) + ", y: " + std::to_string(y) + ", speed: " + std::to_string(speed));
     window.clear();
     playerSprite.setPosition(sf::Vector2f(x, y));
-    render(win);
-    window.draw(grassSprite);
-    window.draw(playerSprite);
+    render(win, entities);
+    // move(win, entities); // TODO: implement this function
     window.draw(HUDText);
     window.draw(text);
     window.display();
