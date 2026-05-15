@@ -21,7 +21,8 @@ void render(GameWindow window, std::vector<Entity> entities) {
     window.win.draw(e.animation.sprite);
   }
   // HUD
-  sf::Text HUDText(font, "x: " + std::to_string(entities[1].movement.pos.x) + ", y: " + std::to_string(entities[1].movement.pos.y) + ", speed: " + std::to_string(entities[1].movement.speed), 10);
+  int x = entities[1].movement.pos.x, y = entities[1].movement.pos.y;
+  sf::Text HUDText(font, "x: " + std::to_string(x) + ", y: " + std::to_string(y) + ", speed: " + std::to_string(entities[1].movement.speed), 10);
   HUDText.setPosition(sf::Vector2f(500.f, 0.f));
   window.win.draw(HUDText);
 }

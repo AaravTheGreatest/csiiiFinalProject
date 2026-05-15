@@ -4,7 +4,7 @@
 #include <SFML/Graphics/Text.hpp>
 
 sf::Texture defaultTexture("assets/default.png");
-sf::Texture playerTexture("assets/character.png");
+sf::Texture playerTexture("assets/character2.png");
 sf::Texture straightTrailTexture("assets/floor1_straightTrail.png");
 sf::Texture grassTexture("assets/grass.png"); 
 sf::Texture pathTexture("assets/path.png");

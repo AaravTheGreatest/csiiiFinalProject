@@ -2,7 +2,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/System/Clock.hpp>
 #include <vector>
-#include <iostream>
+#include <cmath>
 #include <entity.hpp>
 
 float speed = 200.0f, normSpeed = 200.0f, sprintSpeed = 300.0f, ADMIN_TOTAL_SPEED_RAHHHHHHHH = 20000.0f;
@@ -25,15 +25,14 @@ void move(sf::RenderWindow& win, std::vector<Entity>& entities, sf::View& game) 
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) { e.movement.dir.x += 1; left = false; }
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || 
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) { e.movement.dir.x -= 1; left = true; }
-      if (left) { e.animation.sprite.setScale(sf::Vector2f(-5.0f, 5.0f)); e.animation.sprite.setOrigin(sf::Vector2f(32.0f, 0.0f)); }
-      else { e.animation.sprite.setScale(sf::Vector2f(5.0f, 5.0f)); e.animation.sprite.setOrigin(sf::Vector2f(0.0f, 0.0f)); }
+      if (left) { e.animation.sprite.setScale(sf::Vector2f(-1.0f, 1.0f)); e.animation.sprite.setOrigin(sf::Vector2f(120.0f, 0.0f)); }
+      else { e.animation.sprite.setScale(sf::Vector2f(1.0f, 1.0f)); e.animation.sprite.setOrigin(sf::Vector2f(0.0f, 0.0f)); }
       float len = std::sqrt(e.movement.dir.x * e.movement.dir.x + e.movement.dir.y * e.movement.dir.y);
       if (len > 0) e.movement.dir /= len;
       e.animation.sprite.move(sf::Vector2f(e.movement.dir.x * speed * dt, e.movement.dir.y * speed * dt));
       e.movement.pos = e.animation.sprite.getPosition();
-      if (e.animation.sprite.getPosition().x <= 0) e.animation.sprite.setPosition({0.0f, e.animation.sprite.getPosition().y});
+      if (e.animation.sprite.getPosition().x <= -30) e.animation.sprite.setPosition({-30.0f, e.animation.sprite.getPosition().y});
       if (e.animation.sprite.getPosition().y <= 0) e.animation.sprite.setPosition({e.animation.sprite.getPosition().x, 0.0f});
-      std::cout << e.animation.sprite.getPosition().x << ' ' << e.animation.sprite.getPosition().y << '\n';
       game.setCenter(e.movement.pos);
       win.setView(game);
     }
