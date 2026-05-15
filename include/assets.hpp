@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 extern sf::Texture defaultTexture;
 extern sf::Texture playerTexture;
@@ -16,12 +18,7 @@ extern sf::Texture rock5Texture;
 
 extern sf::Sprite defaultSprite;
 extern sf::Sprite playerSprite;
-// extern sf::Sprite straightTrailSprite;
-// extern sf::Sprite grassSprite;
-// extern sf::Sprite pathSprite;
-// extern sf::Sprite rock1Sprite;
-// extern sf::Sprite rock2Sprite;
-// extern sf::Sprite rock3Sprite;
-// extern sf::Sprite rock4Sprite;
-// extern sf::Sprite rock5Sprite;
 extern sf::Sprite sprite;
+
+extern sf::Font font;
+extern sf::Text HUDText;

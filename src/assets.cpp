@@ -1,5 +1,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 sf::Texture defaultTexture("assets/default.png");
 sf::Texture playerTexture("assets/character.png");
@@ -14,12 +16,7 @@ sf::Texture rock5Texture("assets/rock05.png");
 
 sf::Sprite defaultSprite(defaultTexture);
 sf::Sprite playerSprite(playerTexture);
-// sf::Sprite straightTrailSprite(straightTrailTexture);
-// sf::Sprite grassSprite(grassTexture);
-// sf::Sprite pathSprite(pathTexture);
-// sf::Sprite rock1Sprite(rock1Texture);
-// sf::Sprite rock2Sprite(rock2Texture);
-// sf::Sprite rock3Sprite(rock3Texture);
-// sf::Sprite rock4Sprite(rock4Texture);
-// sf::Sprite rock5Sprite(rock5Texture);
 sf::Sprite sprite(defaultTexture);
+
+sf::Font font("./assets/Minecraft.ttf");
+sf::Text HUDText(font, "", 10);

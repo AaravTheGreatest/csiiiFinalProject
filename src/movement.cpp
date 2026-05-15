@@ -1,14 +1,19 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/System/Clock.hpp>
 #include <vector>
+#include <iostream>
 #include <entity.hpp>
 
-void move(sf::RenderWindow win, std::vector<Entity> entities) {
-  for (Entity e: entities) {
-    if (e.EntityType == PLAYER) {
+float speed = 200.0f, normSpeed = 200.0f, sprintSpeed = 300.0f, ADMIN_TOTAL_SPEED_RAHHHHHHHH = 20000.0f;
+sf::Clock gameClock;
+bool left = false;
+void move(sf::RenderWindow& win, std::vector<Entity>& entities, sf::View& game) {
+  for (Entity& e: entities) {
+    if (e.type == EntityType::PLAYER) {
       // Keyboard movement logic
-      float dt = clock.restart().asSeconds();
-      bool left = false;
+      e.movement.dir = sf::Vector2f(0.0f, 0.0f);
+      float dt = gameClock.restart().asSeconds();
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) speed = sprintSpeed;
       else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::RShift)) speed = ADMIN_TOTAL_SPEED_RAHHHHHHHH;
       else speed = normSpeed;
@@ -20,18 +25,22 @@ void move(sf::RenderWindow win, std::vector<Entity> entities) {
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) { e.movement.dir.x += 1; left = false; }
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || 
         sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) { e.movement.dir.x -= 1; left = true; }
-      if (left) { playerSprite.setScale(sf::Vector2f(-5.0f, 5.0f)); playerSprite.setOrigin(sf::Vector2f(32.0f, 0.0f)); }
-      else { playerSprite.setScale(sf::Vector2f(5.0f, 5.0f)); playerSprite.setOrigin(sf::Vector2f(0.0f, 0.0f)); }
-      float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
-      if (len > 0) dir /= len;
-      x += dir.x * speed * dt; y += dir.y * speed * dt;
-      if (x <= 0) x = 0.0f;
-      if (y <= 0) y = 0.0f;
+      if (left) { e.animation.sprite.setScale(sf::Vector2f(-5.0f, 5.0f)); e.animation.sprite.setOrigin(sf::Vector2f(32.0f, 0.0f)); }
+      else { e.animation.sprite.setScale(sf::Vector2f(5.0f, 5.0f)); e.animation.sprite.setOrigin(sf::Vector2f(0.0f, 0.0f)); }
+      float len = std::sqrt(e.movement.dir.x * e.movement.dir.x + e.movement.dir.y * e.movement.dir.y);
+      if (len > 0) e.movement.dir /= len;
+      e.animation.sprite.move(sf::Vector2f(e.movement.dir.x * speed * dt, e.movement.dir.y * speed * dt));
+      e.movement.pos = e.animation.sprite.getPosition();
+      if (e.animation.sprite.getPosition().x <= 0) e.animation.sprite.setPosition({0.0f, e.animation.sprite.getPosition().y});
+      if (e.animation.sprite.getPosition().y <= 0) e.animation.sprite.setPosition({e.animation.sprite.getPosition().x, 0.0f});
+      std::cout << e.animation.sprite.getPosition().x << ' ' << e.animation.sprite.getPosition().y << '\n';
+      game.setCenter(e.movement.pos);
+      win.setView(game);
     }
-    else if (e.EntityType == ENEMY) {
+    else if (e.type == EntityType::ENEMY) {
       // AI movement logic
     }
-    else if (e.EntityType == PASSIVE) {
+    else if (e.type == EntityType::PASSIVE) {
       // Passive AI movement logic
     }
   }

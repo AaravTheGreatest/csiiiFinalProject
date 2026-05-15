@@ -11,4 +11,4 @@ struct Movement {
   std::optional<std::vector<sf::Vector2f>> path;
   std::optional<size_t> pathIndex;
 };
-void move(sf::RenderWindow win, std::vector<Entity> entities);
+void move(sf::RenderWindow& win, std::vector<Entity>& entities, sf::View& game);
