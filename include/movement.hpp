@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <vector>
 
-struct Entity;
+struct Entity; // Needed because doing #include <entity.hpp> here would be a cyclic dependency, so I include it in the corresponding src/movement.cpp instead
 
 struct Movement {
   sf::Vector2f spawnPoint, pos, dir, vel;
